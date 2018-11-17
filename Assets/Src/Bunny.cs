@@ -9,6 +9,13 @@ public class Bunny : MonoBehaviour
     [SerializeField]
     private ParticleSystem m_bloodSplash;
 
+    private GameManager m_gameManager;
+
+    private void Awake()
+    {
+        m_gameManager = FindObjectOfType<GameManager>();
+    }
+
     private void Update()
     {
         transform.position += transform.up * m_speed * Time.deltaTime;
@@ -25,6 +32,7 @@ public class Bunny : MonoBehaviour
 
         if (m_bloodSplash != null) { Instantiate(m_bloodSplash, transform.position, Quaternion.identity); }
 
+        m_gameManager.OnBunnyDied(this);
         Destroy(gameObject);
     }
 

@@ -27,14 +27,19 @@ public class Player : MonoBehaviour
 
     private float m_currentShootDelay;
 
+    private GameManager m_gameManager;
+
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
         m_currentShootDelay = m_shootDelay;
+        m_gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
     {
+        if (m_gameManager.GameOver) { return; }
+
         HandleMove();
         HandleShoot();
     }
@@ -61,6 +66,7 @@ public class Player : MonoBehaviour
 
         m_animator.SetTrigger("Shoot");
         m_currentShootDelay = m_shootDelay;
+        m_gameManager.OnArrowFired();
         Instantiate(m_arrowPrefab, m_arrowStartPosition.position, Quaternion.identity);
     }
 

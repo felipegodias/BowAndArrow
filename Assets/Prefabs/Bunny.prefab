@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 0.2
+  m_bloodSplash: {fileID: 198838643723734474, guid: 1aeaddc0290b7fb4c939dcf937c11b3d,
+    type: 2}
 --- !u!212 &212002801172357178
 SpriteRenderer:
   m_ObjectHideFlags: 1
