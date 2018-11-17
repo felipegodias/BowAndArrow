@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    [SerializeField]
+    private GameOverScreen m_gameOverScreen;
+
     public int StartArrows;
 
     public int StartHealth;
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         GameOver = true;
         if (CurrentScore > Highscore) { Highscore = CurrentScore; }
-        SceneManager.LoadScene("game");
+        m_gameOverScreen.gameObject.SetActive(true);
     }
 
 }
