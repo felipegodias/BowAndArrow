@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading;
+
+using SpeechLib;
 
 using UnityEngine;
 
@@ -19,6 +22,17 @@ public class AudioManager : MonoBehaviour
             AudioSource source = sfxEntry.Sources[Random.Range(0, sfxEntry.Sources.Length)];
             Instantiate(source);
         }
+    }
+
+    public void Speak(int delayInMilliseconds, string text)
+    {
+        Action action = () => {
+            Thread.Sleep(delayInMilliseconds);
+            var voice = new SpVoice();
+            voice.Speak(text);
+        };
+        var thread = new Thread(() => action());
+        thread.Start();
     }
 
     [Serializable]

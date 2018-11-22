@@ -78,9 +78,15 @@ public class GameManager : MonoBehaviour
         {
             Highscore = CurrentScore;
             m_audioManager.Play("highscore");
+            m_audioManager.Speak(1500, $"New HighScore! Your Score was {CurrentScore}.");
+        }
+        else
+        {
+            m_audioManager.Speak(1500, $"Your Score was {CurrentScore}.");
         }
 
         m_audioManager.Play("gameover");
+
         m_gameOverScreen.gameObject.SetActive(true);
     }
 
