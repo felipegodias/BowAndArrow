@@ -16,7 +16,7 @@ public class Instantiator : MonoBehaviour
     private void Awake()
     {
         m_gameManager = FindObjectOfType<GameManager>();
-        m_currentDelay = m_delay;
+        m_currentDelay = 1;
     }
 
     private void Update()

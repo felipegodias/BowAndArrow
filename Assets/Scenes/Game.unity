@@ -944,6 +944,15 @@ MonoBehaviour:
     - {fileID: 82049960306934936, guid: 608d0681435d2c24aa70f362e0d6f7c4, type: 2}
     - {fileID: 82558123530946808, guid: 3e4c426a9d52e814faa8e8ae70d416d7, type: 2}
     - {fileID: 82775981960789098, guid: 048445a065f3f9441841cf00a82e4757, type: 2}
+  - Name: highscore
+    Sources:
+    - {fileID: 82797738683071186, guid: 0e18162f80968f743a2d59421e1be21b, type: 2}
+  - Name: gameover
+    Sources:
+    - {fileID: 82328317790296042, guid: 4c7b7d784a27fef47bef4f909c3e59c3, type: 2}
+  - Name: gamestart
+    Sources:
+    - {fileID: 82232173867402488, guid: ceda40e64793d1f46a8df17cbd691710, type: 2}
 --- !u!4 &1083529724
 Transform:
   m_ObjectHideFlags: 0
