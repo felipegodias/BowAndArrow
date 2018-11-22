@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 using SpeechLib;
@@ -9,6 +10,8 @@ using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
+
+    private readonly List<VoiceThread> m_voiceThreads = new List<VoiceThread>();
 
     [SerializeField]
     private SFXEntry[] m_entries;
@@ -26,13 +29,23 @@ public class AudioManager : MonoBehaviour
 
     public void Speak(int delayInMilliseconds, string text)
     {
-        Action action = () => {
+        Action<VoiceThread> action = vt =>
+        {
             Thread.Sleep(delayInMilliseconds);
-            var voice = new SpVoice();
-            voice.Speak(text);
+            vt.Voice = new SpVoice();
+            vt.Voice.Speak(text);
+            m_voiceThreads.Remove(vt);
         };
-        var thread = new Thread(() => action());
+        var voiceThread = new VoiceThread();
+        var thread = new Thread(() => action(voiceThread));
+        voiceThread.Thread = thread;
+        m_voiceThreads.Add(voiceThread);
         thread.Start();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (VoiceThread voiceThread in m_voiceThreads) { voiceThread.Kill(); }
     }
 
     [Serializable]
@@ -42,6 +55,21 @@ public class AudioManager : MonoBehaviour
         public string Name;
 
         public AudioSource[] Sources;
+
+    }
+
+    private class VoiceThread
+    {
+
+        public Thread Thread;
+
+        public SpVoice Voice;
+
+        public void Kill()
+        {
+            Voice?.Skip("Sentence", int.MaxValue);
+            Thread.Abort();
+        }
 
     }
 
