@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+
+using UnityEngine;
 
 public class StartText : MonoBehaviour
 {
@@ -10,6 +12,15 @@ public class StartText : MonoBehaviour
     {
         m_gameManager = FindObjectOfType<GameManager>();
         m_audioManager = FindObjectOfType<AudioManager>();
+    }
+
+    public IEnumerator Start()
+    {
+        while (!m_gameManager.HasStarted)
+        {
+            m_audioManager.Speak(200, "Press any button to start.");
+            yield return new WaitForSeconds(5);
+        }
     }
 
     private void Update()
