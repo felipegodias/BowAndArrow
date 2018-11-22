@@ -13,6 +13,8 @@ public class Bunny : MonoBehaviour
 
     private AudioManager m_audioManager;
 
+    private float m_lifeTime;
+
     private void Awake()
     {
         m_gameManager = FindObjectOfType<GameManager>();
@@ -22,6 +24,12 @@ public class Bunny : MonoBehaviour
     private void Update()
     {
         transform.position += transform.up * m_speed * Time.deltaTime;
+        m_lifeTime += Time.deltaTime;
+    }
+
+    private void LateUpdate()
+    {
+        if (m_lifeTime > 20) { Destroy(gameObject); }
     }
 
     private void OnBecameInvisible()
