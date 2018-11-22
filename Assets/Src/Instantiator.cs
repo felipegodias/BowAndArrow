@@ -35,7 +35,7 @@ public class Instantiator : MonoBehaviour
         float offset = Random.Range(0f, 2f);
 
         string plural = count == 1 ? "y" : "ies";
-        m_audioManager.Speak(0, $"{count} bunn{plural} coming.");
+        m_audioManager.Speak(0, $"{count} bunn{plural} has been spawned!");
         for (var i = 0; i < count; i++)
         {
             Instantiate(m_bunnyPrefab, new Vector3(offset + -0.75f + i * 0.15f, -1.5f, 0), Quaternion.identity);
