@@ -62,6 +62,18 @@ public class GameManager : MonoBehaviour
     public void OnArrowFired()
     {
         ArrowCount--;
+        if (ArrowCount > 1)
+        {
+            m_audioManager.Speak(0, $"{ArrowCount} arrows left.");
+        } else if (ArrowCount == 1)
+        {
+            m_audioManager.Speak(0, "1 arrow left.");
+        }
+        else
+        {
+            m_audioManager.Speak(0, $"No arrows left.");
+        }
+        
         if (ArrowCount == 0) { OnGameOver(); }
     }
 
