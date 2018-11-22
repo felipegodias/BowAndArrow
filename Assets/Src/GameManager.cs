@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        m_audioManager.Speak(0, $"{ArrowCount} arrows left.");
         HasStarted = true;
     }
 
@@ -62,16 +63,16 @@ public class GameManager : MonoBehaviour
     public void OnArrowFired()
     {
         ArrowCount--;
-        if (ArrowCount > 1)
-        {
-            m_audioManager.Speak(0, $"{ArrowCount} arrows left.");
-        } else if (ArrowCount == 1)
-        {
-            m_audioManager.Speak(0, "1 arrow left.");
-        }
-        else
-        {
-            m_audioManager.Speak(0, $"No arrows left.");
+        switch (ArrowCount) {
+            case 5:
+                m_audioManager.Speak(0, $"{ArrowCount} arrows left.");
+                break;
+            case 1:
+                m_audioManager.Speak(0, "1 arrow left.");
+                break;
+            case 0:
+                m_audioManager.Speak(0, $"No arrows left.");
+                break;
         }
         
         if (ArrowCount == 0) { OnGameOver(); }

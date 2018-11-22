@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameOverScreen: {fileID: 553618442}
-  StartArrows: 2
+  StartArrows: 10
   StartHealth: 3
 --- !u!1 &277041847
 GameObject:
