@@ -905,6 +905,57 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 850072396}
   m_CullTransparentMesh: 0
+--- !u!1 &1083529722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083529724}
+  - component: {fileID: 1083529723}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1083529723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1083529722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d193514422af7b24c950a5b18165944f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_entries:
+  - Name: shoot
+    Sources:
+    - {fileID: 82890167511541870, guid: 25d68abe3f3e0564596256d5f512f33b, type: 2}
+  - Name: hit
+    Sources:
+    - {fileID: 82012507720694948, guid: 6af7750c052a2b241a1bf22ac79e1242, type: 2}
+    - {fileID: 82834063898993716, guid: e5eb696a0580c284b948eacdb81a814d, type: 2}
+    - {fileID: 82049960306934936, guid: 608d0681435d2c24aa70f362e0d6f7c4, type: 2}
+    - {fileID: 82558123530946808, guid: 3e4c426a9d52e814faa8e8ae70d416d7, type: 2}
+    - {fileID: 82775981960789098, guid: 048445a065f3f9441841cf00a82e4757, type: 2}
+--- !u!4 &1083529724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1083529722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1156702867
 Prefab:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using System.Collections;
+
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,11 +26,23 @@ public class GameManager : MonoBehaviour
 
     public bool GameOver { get; private set; }
 
+    public bool HasStarted { get; private set; }
+
+    public bool IsPlaying
+    {
+        get { return HasStarted && !GameOver; }
+    }
+
     private void Awake()
     {
         CurrentScore = 0;
         ArrowCount = StartArrows;
         Health = StartHealth;
+    }
+
+    public void StartGame()
+    {
+        HasStarted = true;
     }
 
     public void OnBunnyHit(Bunny bunny)
@@ -52,7 +65,14 @@ public class GameManager : MonoBehaviour
     private void OnGameOver()
     {
         GameOver = true;
+        StartCoroutine(DoGameOver());
+    }
+
+    private IEnumerator DoGameOver()
+    {
+        yield return new WaitForSeconds(3);
         if (CurrentScore > Highscore) { Highscore = CurrentScore; }
+
         m_gameOverScreen.gameObject.SetActive(true);
     }
 

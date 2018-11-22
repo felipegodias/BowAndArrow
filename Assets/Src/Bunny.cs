@@ -11,9 +11,12 @@ public class Bunny : MonoBehaviour
 
     private GameManager m_gameManager;
 
+    private AudioManager m_audioManager;
+
     private void Awake()
     {
         m_gameManager = FindObjectOfType<GameManager>();
+        m_audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()
@@ -33,6 +36,7 @@ public class Bunny : MonoBehaviour
         if (m_bloodSplash != null) { Instantiate(m_bloodSplash, transform.position, Quaternion.identity); }
 
         m_gameManager.OnBunnyDied(this);
+        m_audioManager.Play("hit");
         Destroy(gameObject);
     }
 

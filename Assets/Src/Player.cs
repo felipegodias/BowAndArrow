@@ -29,16 +29,19 @@ public class Player : MonoBehaviour
 
     private GameManager m_gameManager;
 
+    private AudioManager m_audioManager;
+
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
         m_currentShootDelay = m_shootDelay;
         m_gameManager = FindObjectOfType<GameManager>();
+        m_audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()
     {
-        if (m_gameManager.GameOver) { return; }
+        if (!m_gameManager.IsPlaying) { return; }
 
         HandleMove();
         HandleShoot();
@@ -64,9 +67,11 @@ public class Player : MonoBehaviour
         bool shoot = Input.GetButtonDown("Fire1");
         if (!shoot) { return; }
 
-        m_animator.SetTrigger("Shoot");
+        
         m_currentShootDelay = m_shootDelay;
         m_gameManager.OnArrowFired();
+        m_animator.SetTrigger("Shoot");
+        m_audioManager.Play("shoot");
         Instantiate(m_arrowPrefab, m_arrowStartPosition.position, Quaternion.identity);
     }
 
