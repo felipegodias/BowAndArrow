@@ -24,13 +24,9 @@ public class GameOverScreen : MonoBehaviour
         m_scoreText.text = m_gameManager.CurrentScore.ToString("N0");
     }
 
-
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            SceneManager.LoadScene("Game");
-        }
+        if (Input.GetButtonDown("Fire1")) { SceneManager.LoadScene("Game"); }
     }
 
 }

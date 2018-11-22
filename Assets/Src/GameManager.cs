@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameOverScreen m_gameOverScreen;
 
+    private AudioManager m_audioManager;
+
     public int StartArrows;
 
     public int StartHealth;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        m_audioManager = FindObjectOfType<AudioManager>();
         CurrentScore = 0;
         ArrowCount = StartArrows;
         Health = StartHealth;
@@ -71,8 +74,13 @@ public class GameManager : MonoBehaviour
     private IEnumerator DoGameOver()
     {
         yield return new WaitForSeconds(3);
-        if (CurrentScore > Highscore) { Highscore = CurrentScore; }
+        if (CurrentScore > Highscore)
+        {
+            Highscore = CurrentScore;
+            m_audioManager.Play("highscore");
+        }
 
+        m_audioManager.Play("gameover");
         m_gameOverScreen.gameObject.SetActive(true);
     }
 
